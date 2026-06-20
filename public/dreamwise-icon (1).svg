@@ -1,0 +1,11 @@
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img"><title>DreamWise owl</title>
+<circle cx="32" cy="32" r="32" fill="#1A1432"/>
+<path d="M16 14 Q10 6 18 4 Q20 10 18 16 Z" fill="#1A1432"/>
+<path d="M48 14 Q54 6 46 4 Q44 10 46 16 Z" fill="#1A1432"/>
+<ellipse cx="32" cy="34" rx="20" ry="22" fill="#B89AE8"/>
+<circle cx="23" cy="30" r="10" fill="#FFFFFF"/>
+<circle cx="41" cy="30" r="10" fill="#FFFFFF"/>
+<circle cx="23" cy="30" r="6" fill="#1A1432"/>
+<circle cx="41" cy="30" r="6" fill="#1A1432"/>
+<path d="M32 36 L28 44 L36 44 Z" fill="#E8A862"/>
+</svg>
