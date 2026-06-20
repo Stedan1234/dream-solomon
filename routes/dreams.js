@@ -1,15 +1,18 @@
 import express from 'express';
 import pool from '../config/database.js';
 import { getDreamInterpretation } from '../utils/ai-openai.js'; // or '../utils/ai-gemini.js' for Gemini
-import { validateText } from '../utils/validateText.js'
+import { validateText } from '../utils/validateText.js';
 
 const router = express.Router();
 
-// Get all dreams
+// Get all dreams for this device only
 router.get('/', async (req, res) => {
-  console.log('GET /api/dreams received');
+  console.log('GET /api/dreams received for device', req.deviceId);
   try {
-    const result = await pool.query('SELECT * FROM dreams ORDER BY created_at DESC');
+    const result = await pool.query(
+      'SELECT * FROM dreams WHERE device_id = $1 ORDER BY created_at DESC',
+      [req.deviceId]
+    );
     console.log('Fetched', result.rows.length, 'dreams');
     res.json(result.rows);
   } catch (error) {
@@ -18,10 +21,13 @@ router.get('/', async (req, res) => {
   }
 });
 
-// Get single dream
+// Get single dream — only if it belongs to this device
 router.get('/:id', async (req, res) => {
   try {
-    const result = await pool.query('SELECT * FROM dreams WHERE id = $1', [req.params.id]);
+    const result = await pool.query(
+      'SELECT * FROM dreams WHERE id = $1 AND device_id = $2',
+      [req.params.id, req.deviceId]
+    );
     if (result.rows.length === 0) {
       return res.status(404).json({ error: 'Dream not found' });
     }
@@ -32,9 +38,9 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-// Create new dream with AI interpretation
+// Create new dream with AI interpretation, tagged to this device
 router.post('/', async (req, res) => {
-  console.log('POST /api/dreams received');
+  console.log('POST /api/dreams received for device', req.deviceId);
   console.log('Request body:', req.body);
 
   const { dream_text } = req.body;
@@ -51,20 +57,20 @@ router.post('/', async (req, res) => {
       interpretation = await getDreamInterpretation(validation.value);
     } catch (aiError) {
       console.error('AI interpretation failed:', aiError);
-      return res.status(503).json({ 
+      return res.status(503).json({
         error: 'AI service temporarily unavailable.',
         type: 'ai_error'
       });
     }
-    
+
     console.log('AI interpretation received, inserting into database...');
 
-    // Insert into database and return the created dream
+    // Insert into database, tagged with device_id, and return the created dream
     const result = await pool.query(
-      'INSERT INTO dreams (dream_text, interpretation) VALUES ($1, $2) RETURNING *',
-      [validation.value, interpretation]
+      'INSERT INTO dreams (device_id, dream_text, interpretation) VALUES ($1, $2, $3) RETURNING *',
+      [req.deviceId, validation.value, interpretation]
     );
-    
+
     console.log('Dream created successfully:', result.rows[0].id);
     res.status(201).json(result.rows[0]);
   } catch (error) {
@@ -74,15 +80,18 @@ router.post('/', async (req, res) => {
   }
 });
 
-// Delete dream
+// Delete dream — only if it belongs to this device
 router.delete('/:id', async (req, res) => {
   try {
-    const result = await pool.query('DELETE FROM dreams WHERE id = $1', [req.params.id]);
-    
+    const result = await pool.query(
+      'DELETE FROM dreams WHERE id = $1 AND device_id = $2',
+      [req.params.id, req.deviceId]
+    );
+
     if (result.rowCount === 0) {
       return res.status(404).json({ error: 'Dream not found' });
     }
-    
+
     res.json({ message: 'Dream deleted successfully' });
   } catch (error) {
     console.error('Error deleting dream:', error);
