@@ -4,33 +4,53 @@
     box-sizing: border-box;
 }
 
-@keyframes gradientShift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+:root {
+    --twilight: #1A1432;
+    --twilight-deep: #120D24;
+    --lavender: #B89AE8;
+    --lavender-deep: #8E76C4;
+    --lavender-soft: #F0ECF9;
+    --ink: #2A2438;
+    --ink-muted: #5C5470;
+    --surface: #FBFAFE;
+    --danger: #C4607A;
 }
 
 @keyframes fadeInUp {
     from {
         opacity: 0;
-        transform: translateY(30px);
+        transform: translateY(24px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
     }
 }
 
-@keyframes glow {
-    0%, 100% { text-shadow: 0 0 10px rgba(102, 126, 234, 0.5); }
-    50% { text-shadow: 0 0 20px rgba(102, 126, 234, 0.8); }
+@keyframes twinkle {
+
+    0%,
+    100% {
+        opacity: 0.25;
+    }
+
+    50% {
+        opacity: 0.9;
+    }
 }
 
 body {
     font-family: "Roboto", sans-serif;
-    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-    background-size: 400% 400%;
-    animation: gradientShift 15s ease infinite;
+    background: var(--twilight);
+    background-image:
+        radial-gradient(1px 1px at 10% 20%, rgba(184, 154, 232, 0.5) 50%, transparent 50%),
+        radial-gradient(1px 1px at 80% 15%, rgba(184, 154, 232, 0.4) 50%, transparent 50%),
+        radial-gradient(1px 1px at 60% 8%, rgba(184, 154, 232, 0.5) 50%, transparent 50%),
+        radial-gradient(1.5px 1.5px at 30% 35%, rgba(184, 154, 232, 0.35) 50%, transparent 50%),
+        radial-gradient(1px 1px at 90% 40%, rgba(184, 154, 232, 0.3) 50%, transparent 50%);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     min-height: 100vh;
     padding: 20px;
 }
@@ -42,54 +62,54 @@ body {
 
 header {
     text-align: center;
-    color: white;
+    color: var(--lavender-soft);
     margin-bottom: 40px;
+    padding-top: 20px;
 }
 
 .header-inner {
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 .logo {
-    width: 30%;
+    height: 56px;
+    width: auto;
 }
 
 header h1 {
-    font-size: 3.5rem;
-    margin-bottom: 10px;
-    font-weight: 700;
-    animation: glow 3s ease-in-out infinite;
-    letter-spacing: 1px;
+    display: none;
 }
 
 .subtitle {
-    font-size: 1.2rem;
-    opacity: 0.95;
-    font-weight: 300;
-    letter-spacing: 0.5px;
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-style: italic;
+    font-size: 1.3rem;
+    color: var(--lavender);
+    opacity: 0.9;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    margin-top: 8px;
 }
 
-.add-dream, .dreams-list {
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: 5px;
+.add-dream,
+.dreams-list {
+    background: var(--surface);
+    border-radius: 12px;
     padding: 30px;
     margin-bottom: 30px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(10px);
-    animation: fadeInUp 0.8s ease-out;
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 20px 50px rgba(12, 8, 28, 0.35);
+    animation: fadeInUp 0.6s ease-out;
+    border: 1px solid rgba(184, 154, 232, 0.15);
 }
 
 h2 {
-    color: #2d3748;
+    font-family: "Cormorant Garamond", Georgia, serif;
+    color: var(--twilight);
     margin-bottom: 20px;
-    font-size: 1.6rem;
+    font-size: 1.7rem;
     font-weight: 600;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
 }
 
 #dreamForm {
@@ -101,60 +121,44 @@ h2 {
 textarea {
     width: 100%;
     padding: 15px;
-    border: 2px solid #e0e0e0;
+    border: 2px solid #E4DEF2;
     border-radius: 10px;
     font-size: 1rem;
     font-family: inherit;
     resize: vertical;
     transition: all 0.3s ease;
-    background: #f8fafb;
+    background: #FAF8FD;
+    color: var(--ink);
 }
 
 textarea:focus {
     outline: none;
-    border-color: #667eea;
+    border-color: var(--lavender);
     background: white;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    box-shadow: 0 0 0 3px rgba(184, 154, 232, 0.2);
 }
 
 button {
     font-family: inherit;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    border: none;
+    background: var(--twilight);
+    color: var(--lavender-soft);
+    border: 1px solid var(--lavender-deep);
     padding: 15px 30px;
     border-radius: 10px;
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-    position: relative;
-    overflow: hidden;
-}
-
-button::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transition: left 0.5s;
+    transition: all 0.25s ease;
 }
 
 button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
-}
-
-button:hover::before {
-    left: 100%;
+    background: #241A40;
+    border-color: var(--lavender);
+    transform: translateY(-2px);
 }
 
 button:active {
-    transform: translateY(-1px);
+    transform: translateY(0);
 }
 
 button:disabled {
@@ -164,21 +168,19 @@ button:disabled {
 }
 
 .dream-card {
-    border: none;
-    border-radius: 1px;
+    border-radius: 10px;
     padding: 20px;
     margin-bottom: 20px;
     transition: all 0.3s ease;
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-    /* border-left: 5px solid #667eea; */
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    background: var(--lavender-soft);
+    box-shadow: 0 5px 15px rgba(26, 20, 50, 0.08);
     position: relative;
+    border: 1px solid rgba(142, 118, 196, 0.15);
 }
 
 .dream-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-    border-left-color: #764ba2;
+    transform: translateY(-4px);
+    box-shadow: 0 15px 30px rgba(26, 20, 50, 0.15);
 }
 
 .dream-header {
@@ -189,91 +191,87 @@ button:disabled {
 }
 
 .dream-date {
-    color: #4a5568;
+    color: var(--ink-muted);
     font-size: 0.9rem;
     font-weight: 600;
 }
 
 .delete-btn {
-    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-    padding: 8px 16px;
-    font-size: 0.875rem;
-    box-shadow: 0 2px 8px rgba(245, 87, 108, 0.3);
+    background: transparent;
+    color: var(--danger);
+    border: 1px solid var(--danger);
+    padding: 7px 16px;
+    font-size: 0.85rem;
 }
 
 .delete-btn:hover {
-    box-shadow: 0 4px 12px rgba(245, 87, 108, 0.5);
-    transform: translateY(-2px);
+    background: var(--danger);
+    color: white;
+    border-color: var(--danger);
 }
 
 .dream-text {
     margin-bottom: 15px;
     line-height: 1.7;
-    color: #1a202c;
+    color: var(--ink);
     font-weight: 500;
 }
 
 .interpretation {
-    background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+    background: rgba(184, 154, 232, 0.1);
     padding: 15px;
     border-radius: 8px;
-    /* border-left: 4px solid #667eea; */
-    border-right: 1px solid rgba(102, 126, 234, 0.2);
+    border-left: 3px solid var(--lavender-deep);
 }
 
 .interpretation h3 {
-    color: #667eea;
-    font-size: 1rem;
+    font-family: "Cormorant Garamond", Georgia, serif;
+    color: var(--lavender-deep);
+    font-size: 1.1rem;
     margin-bottom: 10px;
     font-weight: 600;
+    font-style: italic;
 }
 
 .interpretation-text {
-    color: #2d3748;
+    color: var(--ink);
     line-height: 1.7;
     font-weight: 500;
 }
 
 .read-more-btn {
     background: transparent;
-    color: #667eea;
+    color: var(--lavender-deep);
     border: none;
-    padding: 8px 15px;
+    padding: 8px 0;
     font-size: 0.95rem;
     font-weight: 600;
     cursor: pointer;
     margin-top: 10px;
-    transition: all 0.3s ease;
-    box-shadow: none;
-    display: inline-block;
+    transition: opacity 0.2s ease;
     text-decoration: underline;
 }
 
 .read-more-btn:hover {
-    color: #764ba2;
-    transform: none;
-    text-decoration-thickness: 2px;
+    opacity: 0.7;
 }
 
-.read-more-btn:active {
-    transform: scale(0.98);
-}
-
-.loading, .empty {
+.loading,
+.empty {
     text-align: center;
-    color: #718096;
+    color: var(--ink-muted);
     padding: 40px;
-    font-size: 1.1rem;
-    font-weight: 500;
+    font-size: 1.05rem;
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-style: italic;
 }
 
 .error {
-    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    background: var(--danger);
     color: white;
     padding: 15px;
     border-radius: 10px;
     margin-bottom: 20px;
-    box-shadow: 0 4px 15px rgba(245, 87, 108, 0.3);
     font-weight: 500;
 }
 
@@ -282,28 +280,15 @@ button:disabled {
 }
 
 .error-alert {
-    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    background: var(--danger);
     color: white;
     padding: 15px 20px;
-    border-radius: 12px;
+    border-radius: 10px;
     margin-bottom: 20px;
-    box-shadow: 0 4px 15px rgba(245, 87, 108, 0.4);
     font-weight: 500;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    animation: slideDown 0.3s ease-out;
-}
-
-@keyframes slideDown {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
 }
 
 .close-error {
@@ -314,11 +299,14 @@ button:disabled {
     cursor: pointer;
     padding: 0;
     margin-left: 15px;
-    transition: opacity 0.2s ease;
 }
 
-.close-error:hover {
-    opacity: 0.8;
+footer {
+    text-align: center;
+    color: var(--lavender);
+    opacity: 0.6;
+    font-size: 0.85rem;
+    padding: 20px 0;
 }
 
 /* Mobile Responsive Styles */
@@ -331,175 +319,56 @@ button:disabled {
         max-width: 100%;
     }
 
-    header {
-        margin-bottom: 30px;
-    }
-
-    header h1 {
-        font-size: 2.5rem;
-        margin-bottom: 8px;
+    .logo {
+        height: 44px;
     }
 
     .subtitle {
-        font-size: 1rem;
+        font-size: 1.05rem;
     }
 
-    .add-dream, .dreams-list {
+    .add-dream,
+    .dreams-list {
         padding: 20px;
         margin-bottom: 20px;
-        border-radius: 5px;
     }
 
     h2 {
-        font-size: 1.3rem;
-        margin-bottom: 15px;
-    }
-
-    #dreamForm {
-        gap: 12px;
+        font-size: 1.4rem;
     }
 
     textarea {
         padding: 12px;
         font-size: 16px;
-        border-radius: 8px;
     }
 
     button {
         padding: 12px 24px;
         font-size: 0.95rem;
-        border-radius: 8px;
         width: 100%;
     }
 
     .dream-card {
         padding: 15px;
-        margin-bottom: 15px;
-        border-radius: 10px;
-    }
-
-    .dream-card:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
     }
 
     .dream-header {
         flex-direction: column;
         align-items: flex-start;
         gap: 10px;
-        margin-bottom: 10px;
     }
-
-    .dream-date {
-        font-size: 0.85rem;
-    }
-
-    .delete-btn {
-        padding: 6px 12px;
-        font-size: 0.8rem;
-        width: auto;
-        align-self: flex-start;
-    }
-
-    .dream-text {
-        margin-bottom: 12px;
-        font-size: 0.95rem;
-    }
-
-    .interpretation {
-        padding: 12px;
-        border-radius: 6px;
-    }
-
-    .interpretation h3 {
-        font-size: 0.95rem;
-        margin-bottom: 8px;
-    }
-
-    .interpretation-text {
-        font-size: 0.95rem;
-    }
-
-    .read-more-btn {
-        font-size: 0.9rem;
-        margin-top: 8px;
-    }
-
-    .loading, .empty {
-        padding: 30px 15px;
-        font-size: 1rem;
-    }
-
-    .error-alert{
-        display: flex;
-        flex-direction: column;
-        gap: .5em;
-        text-align: center;
-    }
-}
-
-footer {
-    text-align: center;
-    color: white;
 }
 
 @media (max-width: 480px) {
-    body {
-        padding: 10px;
-    }
-
-    header h1 {
-        font-size: 2rem;
+    .logo {
+        height: 38px;
     }
 
     .subtitle {
-        font-size: 0.9rem;
-    }
-
-    .add-dream, .dreams-list {
-        padding: 15px;
-        margin-bottom: 15px;
+        font-size: 0.95rem;
     }
 
     h2 {
-        font-size: 1.1rem;
-        margin-bottom: 12px;
-    }
-
-    textarea {
-        padding: 10px;
-        font-size: 16px;
-    }
-
-    button {
-        padding: 11px 20px;
-        font-size: 0.9rem;
-    }
-
-    .dream-card {
-        padding: 12px;
-        margin-bottom: 12px;
-    }
-
-    .dream-text {
-        margin-bottom: 10px;
-        font-size: 0.9rem;
-    }
-
-    .interpretation {
-        padding: 10px;
-        border-radius: 6px;
-    }
-
-    .interpretation h3 {
-        font-size: 0.9rem;
-    }
-
-    .interpretation-text {
-        font-size: 0.9rem;
-    }
-
-    .loading, .empty {
-        padding: 20px 10px;
+        font-size: 1.2rem;
     }
 }

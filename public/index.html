@@ -4,27 +4,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dream Catcher</title>
+    <title>DreamWise — Where dreams find their meaning</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/svg+xml" href="/dreamwise-icon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&display=swap"
         rel="stylesheet">
-    <link rel="canonical" href="https://dream-solomon.com"> 
 </head>
 
 <body>
     <div class="container">
         <header>
             <div class="header-inner">
-                <img src="/dream-logo.png" class="logo" alt="dream-catcher logo">
-                <h1>DreamCatcher</h1>
+                <img src="/dreamwise-logo.svg" class="logo" alt="DreamWise owl logo">
+                <h1>DreamWise</h1>
             </div>
-            <p class="subtitle">Record your dreams and discover their meanings :)</p>
+            <p class="subtitle">Where dreams find their meaning</p>
         </header>
 
         <section class="add-dream">
-            <h2>Add a New Dream</h2>
+            <h2>Tell me your dream</h2>
             <form id="dreamForm">
                 <textarea
                     id="dreamText"
@@ -33,21 +33,21 @@
                     required
                 ></textarea>
                 <button type="submit" id="submitBtn">
-                    <span class="btn-text">Get Interpretation</span>
-                    <span class="btn-loading" style="display: none;">Interpreting...</span>
+                    <span class="btn-text">Seek understanding</span>
+                    <span class="btn-loading" style="display: none;">Listening...</span>
                 </button>
             </form>
         </section>
 
         <section class="dreams-list">
-            <h2>Your Dream Journal</h2>
+            <h2>Your dream journal</h2>
             <div id="dreamsContainer">
-                <p class="loading">Loading dreams...</p>
+                <p class="loading">Gathering your dreams...</p>
             </div>
         </section>
     </div>
     <footer>
-        <p>&copy; DreamCatcher. All rights reserved.</p>
+        <p>&copy; DreamWise. All rights reserved.</p>
     </footer>
 
     <script src="app.js"></script>
