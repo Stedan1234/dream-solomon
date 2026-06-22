@@ -46,12 +46,25 @@
             </div>
         </section>
     </div>
-   <footer>
+
+    <footer>
         <aside class="footer-brand">
             <a href="https://stedanampofo.vercel.app" class="footer-logo-link" target="_blank" rel="noopener noreferrer">
-                <img src="/dreamwise-logo.svg" alt="DreamWise logo" class="footer-logo">
+                <svg class="footer-stedan-mark" viewBox="0 0 180 40" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Stedan personal brand mark">
+                    <!-- <∞/> code mark -->
+                    <text x="0" y="30" font-family="monospace" font-size="26" font-weight="700" fill="#B89AE8">&lt;</text>
+                    <!-- infinity symbol -->
+                    <g transform="translate(22, 15)">
+                        <path d="M10 5 C10 5 6 0 0 0 C-6 0 -10 5 -10 5 C-10 5 -6 10 0 10 C4 10 7 7.5 10 5 Z
+                                 M10 5 C10 5 14 0 20 0 C26 0 30 5 30 5 C30 5 26 10 20 10 C16 10 13 7.5 10 5 Z"
+                              fill="none" stroke="#B89AE8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </g>
+                    <text x="56" y="30" font-family="monospace" font-size="26" font-weight="700" fill="#B89AE8">/&gt;</text>
+                    <!-- Stedan. wordmark -->
+                    <text x="98" y="30" font-family="Georgia, serif" font-size="22" font-weight="600" fill="#B89AE8">Stedan.</text>
+                </svg>
+                <p class="footer-tagline">Precision. Creativity. Timeliness.</p>
             </a>
-            <p class="footer-tagline">AI Engineer &middot; Product Designer &middot; UI/UX Designer</p>
         </aside>
         <nav class="footer-nav">
             <div class="footer-socials">
@@ -69,6 +82,9 @@
             <p class="footer-made">Made with passion using <span class="footer-accent">Express and JavaScript</span></p>
         </nav>
     </footer>
+
     <script src="app.js"></script>
+    <script>document.getElementById('footerYear').textContent = new Date().getFullYear();</script>
 </body>
+
 </html>
