@@ -47,10 +47,41 @@
         </section>
     </div>
     <footer>
-        <p>&copy; DreamWise. All rights reserved.</p>
+        <aside>
+            <Link href="/" className="flex items-center justify-start">
+              <Image
+                src={Logo2}
+                alt="Logo"
+                width={200}
+                height={90}
+                className="lg:block object-contain"
+              />
+            </Link>
+        <p className='text-[var(--footer-text-color)]'>
+          AI Engineer | Product Designer | UI/UX Designer
+        </p>
+      </aside>
+      <nav>
+        <div className="grid grid-flow-col gap-4">
+          {socials.map((link) => (
+            <Link
+              key={link.id}
+              href={link.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[var(--footer-text-color)] hover:text-[var(--span-color)] text-xl transition-all duration-300"
+            >
+              {link.icon}
+            </Link>
+          ))}
+        </div>
+        < className='text-[var(--footer-text-color)]'>
+          © {new Date().getFullYear()} Stedan's DreamWise AI. All rights reserved.
+        </p>
+        <p>Made with passion using <span className='text-[var(--span-color)]'>Express and JavaScript</span></p>
+      </nav>
     </footer>
 
     <script src="app.js"></script>
 </body>
-
 </html>
