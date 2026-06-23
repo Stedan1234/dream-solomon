@@ -28,18 +28,6 @@
     }
 }
 
-@keyframes twinkle {
-
-    0%,
-    100% {
-        opacity: 0.25;
-    }
-
-    50% {
-        opacity: 0.9;
-    }
-}
-
 body {
     font-family: "Roboto", sans-serif;
     background: var(--twilight);
@@ -301,15 +289,91 @@ button:disabled {
     margin-left: 15px;
 }
 
+/* ── Footer ── */
 footer {
-    text-align: center;
-    color: var(--lavender);
-    opacity: 0.6;
-    font-size: 0.85rem;
-    padding: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 32px 0 28px;
+    gap: 2rem;
+    border-top: 1px solid rgba(184, 154, 232, 0.1);
 }
 
-/* Mobile Responsive Styles */
+.footer-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.footer-logo-link {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 6px;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+}
+
+.footer-logo-link:hover {
+    opacity: 0.8;
+}
+
+.footer-stedan-mark {
+    height: 36px;
+    width: auto;
+    opacity: 0.85;
+    transition: opacity 0.2s ease;
+}
+
+.footer-logo-link:hover .footer-stedan-mark {
+    opacity: 1;
+}
+.footer-tagline {
+    font-size: 0.75rem;
+    color: var(--lavender);
+    opacity: 0.55;
+    letter-spacing: 0.2px;
+}
+
+.footer-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+}
+
+.footer-socials {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 2px;
+}
+
+.footer-socials a {
+    color: var(--lavender);
+    opacity: 0.6;
+    transition: opacity 0.2s ease;
+    display: flex;
+    align-items: center;
+}
+
+.footer-socials a:hover {
+    opacity: 1;
+}
+
+.footer-copy,
+.footer-made {
+    font-size: 0.78rem;
+    color: var(--lavender);
+    opacity: 0.45;
+}
+
+.footer-accent {
+    color: var(--lavender);
+    opacity: 1;
+}
+
+/* ── Mobile ── */
 @media (max-width: 768px) {
     body {
         padding: 12px;
@@ -356,6 +420,16 @@ footer {
         flex-direction: column;
         align-items: flex-start;
         gap: 10px;
+    }
+
+    footer {
+        flex-direction: column;
+        gap: 1.5rem;
+        padding: 24px 0 20px;
+    }
+
+    .footer-nav {
+        align-items: flex-start;
     }
 }
 
