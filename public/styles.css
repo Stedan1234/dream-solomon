@@ -320,10 +320,15 @@ footer {
 }
 
 .footer-stedan-mark {
-    height: 32px;
+    height: 36px;
     width: auto;
+    opacity: 0.85;
+    transition: opacity 0.2s ease;
 }
 
+.footer-logo-link:hover .footer-stedan-mark {
+    opacity: 1;
+}
 .footer-tagline {
     font-size: 0.75rem;
     color: var(--lavender);
